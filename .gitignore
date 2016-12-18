@@ -1,5 +1,6 @@
 node_modules
 dist
+.project
 .tmp
 bower_components
 test/bower_components
