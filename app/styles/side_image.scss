@@ -55,5 +55,5 @@
             margin-bottom: 3em;
         }
     }
-    @include display-context();
+    @include reset-display();
 }

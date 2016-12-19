@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>ANIMATE</title>
+
+		<!-- build:css styles/tabs.css -->
+		<link rel="stylesheet" href="styles/animate.css">
+		<!-- endbuild -->
+
+		<!-- build:js scripts/vendor/modernizr.js -->
+		<script src="/bower_components/modernizr/modernizr.js"></script>
+		<!-- endbuild -->
+	</head>
+
+	<body>
+		<div>
+			<div class="animate-target"></div>
+			<button class="animate-trigger">Press to Animate.css</button>
+		</div>
+
+		<!-- build:js scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<script src="/bower_components/modernizr/modernizr.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<script>
+			$(function() {
+				var animationClasses = 'animated alternate iteration zoomOut';
+				var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
+				$('.animate-trigger').on('click', function() {
+					$('.animate-target').addClass(animationClasses).one(animationEnd, function() {
+						$(this).removeClass(animationClasses);
+					});
+				});
+			});
+		</script>
+	</body>
+
+</html>

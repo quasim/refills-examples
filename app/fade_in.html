@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>FADE IN</title>
+
+		<!-- build:css styles/fade_in.css -->
+		<link rel="stylesheet" href="styles/fade_in.css">
+		<!-- endbuild -->
+
+		<!-- build:js scripts/vendor/modernizr.js -->
+		<script src="/bower_components/modernizr/modernizr.js"></script>
+		<!-- endbuild -->
+	</head>
+
+	<body>
+		<div id="js-fadeInElement" class="fade-in-element">
+			This box will fade in when it's <b>300px above the bottom</b> of the window.
+			<br> And disappear as it goes <b>below the bottom</b> of the window.
+			<br> If JavaScript is disabled, it will still show up.
+		</div>
+
+		<!-- build:js scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<script src="/bower_components/modernizr/modernizr.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<script>
+			$(document).ready(function() {
+				var element = document.getElementById("js-fadeInElement");
+				$(element).addClass('js-fade-element-hide');
+
+				$(window).scroll(function() {
+					if ($("#js-fadeInElement").length > 0) {
+						var elementTopToPageTop = $(element).offset().top;
+						var windowTopToPageTop = $(window).scrollTop();
+						var windowInnerHeight = window.innerHeight;
+						var elementTopToWindowTop = elementTopToPageTop - windowTopToPageTop;
+						var elementTopToWindowBottom = windowInnerHeight - elementTopToWindowTop;
+						var distanceFromBottomToAppear = 300;
+
+						if (elementTopToWindowBottom > distanceFromBottomToAppear) {
+							$(element).addClass('js-fade-element-show');
+						} else if (elementTopToWindowBottom < 0) {
+							$(element).removeClass('js-fade-element-show');
+							$(element).addClass('js-fade-element-hide');
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>
